@@ -1,0 +1,87 @@
+$primary_color: #3e2723
+$primary_light: #6a4f4b
+$primary_dark: #1b0000
+$secondary_color: #8d6e63
+$secondary_light: #5f4339
+$secondary_dark: #be9c91
+$primary_text: white
+$secondary_text: white
+@font-face
+  font-family: NotoSansCJKtc-Demi
+  src: url(NotoSansCJKtc-DemiLight.otf)
+
+@font-face
+  font-family: NotoSansCJKtc
+  src: url(NotoSansCJKtc-Light.otf)
+
+html, body
+  font-family: NotoSansCJKtc !important
+
+.header_top
+  background-color: $primary_dark
+  height: 18px
+  width: 100%
+.header
+  background-color: $primary_color
+  height: 72px
+  position: absolute
+  top: 18px
+  width: 100%
+  color: $primary_text
+  padding: 8px 8px 8px 8px
+  font-size: 36px
+.footer
+  background-color: $primary_color
+  height: 36px
+  position: fixed
+  bottom: 0
+  width: 100%
+  color: $secondary_text
+  padding: 0 8px 0 0
+  font-size: 12px
+.main_space_1
+  position: absolute
+  width: 100%
+  overflow: auto
+  top: 90px
+  bottom: 36px
+.name
+  overflow: hidden
+  opacity: 1 !important
+.data_column
+  height: 36px
+  padding: 0 8px 0 8px !important
+  margin: 0 0 0 0 !important
+  min-width: 0 !important
+  width: 100% !important
+  border-radius: 0 !important
+  transition-duration: 0.5s !important
+  transition-property: all !important
+  &:hover
+    background-color: rgba(97,79,66,0.35) !important
+.sub_info
+  width: 100%
+  background-color: rgba(97,79,66,0.35)
+  padding: 0 8px 0 8px
+  text-align:  center
+  text-decoration: none
+  &.ng-enter
+    opacity: 0
+    height: 0
+    transition-duration: 0.5s
+    transition-property: all
+  &.ng-enter.ng-enter-active
+    opacity: 1
+    height: auto
+  &.ng-leave
+    &.ng-leave-active
+      opacity: 0
+    opacity: 1
+    transition-duration: 0.1s
+    transition-property: all
+.sub_info_dc
+  height: 30px
+  font-size: 14px
+.sub_title_text
+  padding: 0 0 4px 8px
+  font-size: 18px

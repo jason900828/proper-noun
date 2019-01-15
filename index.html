@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+
+    <title>專有名詞產生器</title>
+
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+</head>
+<body layout="column">
+  <!--
+    Your HTML content here
+  -->
+  <md-tabs-wrapper>
+      &nbsp;
+  </md-tabs-wrapper>
+
+
+  <div class="header_top" style="background-color: black;">
+  </div>
+  <div class="header" layout="row" layout-align="space-between center">
+    <div class="title_text">專有名詞產生器</div>
+  </div>
+
+
+      <div id="app" class="md-tabs-content-wrapper">
+
+          <h2>
+              斷詞+分群
+          </h2>
+          <div>
+              從中研院斷詞結果的現有文本，判斷專有名詞。並自動進行專有名詞分群
+          </div>
+          <br />
+
+          <div id="error_message" class="error"></div>
+
+          <form id="my_form"  >
+              <input name="keyword" placeholder="請輸入關鍵字">
+              <p style="color: red"> *注意，如須查詢兩個以上關鍵詞，請以空白當作區隔，ex:老人 需求</p>
+              <br>
+              <label for="proper_file">上傳不能分開的詞 ：</label>
+
+              <input type="file" name="proper_file" id="proper_file">
+              <p style="color: red"> *僅能上傳txt檔，詞與詞之間需換行</p>
+              
+              
+              <label for="excel_file">上傳excel檔案 ：</label>
+              <input type="file" name="excel_file" id="excel_file">
+              <br />
+              <br />
+              <input type="text" name="excel_content"placeholder="請輸入文章欄位名">
+              <br />
+              <br />
+              
+              <div>
+                  
+
+
+                      <!-- <input type="text" class="fleet-date" data-att="from" v-model="range_other_from" v-on:click="set_range_other()" data-date-format="yyyy/mm/dd">
+                      <input type="text" class="fleet-date" data-att="to"  v-model="range_other_to" v-on:click="set_range_other()" data-date-format="yyyy/mm/dd">
+                      -->
+
+                      <!-- <vuejs-datepicker :format="customTimeFormat" :calendar-button="true" v-model="range_other_start" name="range_other_start" v-on:click="set_range_other()" ></vuejs-datepicker> ~ -->
+                      <!-- <input type="text" size="15" v-model="range_other_start" name="range_other_start" v-on:click="set_range_other()" placeholder="年/月/日" /> ~ -->
+
+                      <!-- <vuejs-datepicker :format="customTimeFormat" :calendar-button="true" v-model="range_other_end" name="range_other_end" v-on:click="set_range_other()" ></vuejs-datepicker> -->
+                      <!-- <input type="text" size="15" v-model="range_other_end" name="range_other_end" v-on:click="set_range_other()" placeholder="年/月/日" /> -->
+
+                  <br />
+                  <br />
+              </div>
+
+
+              <!-- <span>keyword: {{ keyword }}</span><br />
+              <span>range: {{ range }}</span><br />
+              <span>range_other_start: {{ range_other_start }}</span><br />
+              <span>range_other_end: {{ range_other_end }}</span><br />
+              <br />
+              -->
+
+              <input type="submit" value="送出">
+
+          </form>
+
+          <div id="loading" style="display: none;">
+              <img src="img/loading.gif" />
+          </div>
+
+
+          <div layout="row" id="api_result" class="pre" >
+          </div>
+      </div>
+
+
+
+
+  <div class="footer" layout="row" layout-align="end center">
+  </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function (e){
+    
+    });
+    
+    var d ;
+    $("#my_form").on('submit',(function(e){
+        $('#loading').show();
+        e.preventDefault();
+        $.ajax({
+            url: "Do_proper_noun.php",
+            type: "POST",
+            data:  new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data){
+                
+                $('#loading').hide();
+                $('#api_result').html(data);
+            },
+            
+            error: function(){
+              alert('ajax error!!');
+            }             
+        });
+    }));
+    $(document).ajaxStop(function(){
+
+        
+    });
+    
+
+</script>
+   
+
+</body>
+</html>
